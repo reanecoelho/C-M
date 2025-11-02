@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- Loader Logic ---
 // This waits for the *entire* page (all images, fonts, etc.) to fully load
-window.onload = ()Cakes & Moulds Homepage (Complete):index.html => {
+// This is the fixed part that hides the loader!
+window.onload = () => {
   const loader = document.getElementById('loader-wrapper');
   if (loader) {
     // Add the 'hidden' class to trigger the CSS fade-out
