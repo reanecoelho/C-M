@@ -2,9 +2,7 @@
  * This file adds interactivity to the website.
  */
 
-// We wrap all our code in this event listener.
-// This makes sure the JavaScript doesn't run until the
-// HTML page is fully loaded and ready.
+// This waits for the HTML document to be ready
 document.addEventListener('DOMContentLoaded', () => {
 
     console.log("Cakes & Moulds site loaded and script.js is running!");
@@ -51,14 +49,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- Example 3: A simple "Welcome" alert on the "Browse Menu" button ---
+    // --- Example 3: A simple console log on the "Browse Menu" button ---
     const menuButton = document.querySelector('.cta-button');
     
     // We can add more than one 'click' listener to an element
     menuButton.addEventListener('click', () => {
         console.log("Hero button clicked!");
         // Note: This will fire *in addition* to the smooth scroll,
-        // because the smooth scroll is on the nav links (which this button also is)
+        // because the smooth scroll is on the nav links
     });
 
-});
+}); // <-- End of the DOMContentLoaded listener
+
+
+// --- Loader Logic ---
+// This waits for the *entire* page (all images, fonts, etc.) to fully load
+window.onload = () => {
+  const loader = document.getElementById('loader-wrapper');
+  if (loader) {
+    // Add the 'hidden' class to trigger the CSS fade-out
+    loader.classList.add('hidden');
+  }
+};
+
