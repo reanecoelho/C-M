@@ -1,10 +1,17 @@
-/* --- Basic Setup --- */
+/* --- Google Fonts Import (The "Vibe") --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+/* Playfair Display: Our new elegant, "crafty" serif font for headings.
+   Lato: Our new clean, readable sans-serif font for all body text.
+*/
+
+/* --- Basic Setup (Our "Twist") --- */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FFFBF7; /* A very light, warm cream color */
-    color: #444;
+    background-color: #FFFBF7; /* Warm, creamy paper background */
+    color: #5D4037; /* Dark chocolate brown text */
 }
 
 .container {
@@ -25,57 +32,62 @@ header {
 }
 
 .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #D9534F; /* A warm red/pink */
+    font-family: 'Playfair Display', serif; /* Heading Font */
+    font-size: 1.7em;
+    font-weight: 700;
+    color: #D46A6A; /* Darker, dusty rose pink */
 }
 
 nav a {
     margin-left: 20px;
     text-decoration: none;
-    color: #555;
-    font-weight: 500;
+    color: #5D4037; /* Dark chocolate text */
+    font-weight: 700; /* Bolder nav links */
+    transition: color 0.3s;
 }
 
 nav a:hover {
-    color: #D9534F;
+    color: #E69597; /* Main raspberry pink on hover */
 }
 
 /* --- 1. Hero Section --- */
 .hero {
-    background-image: url('https://via.placeholder.com/1500x600.png?text=Your+Beautiful+Doughnut+Hamper+Photo');
-    background-size: cover;
-    background-position: center;
-    color: white;
+    /* Switched to a light background with dark text for the "crafty" vibe */
+    background-color: #F8E8E8; /* Very light, soft pink */
+    color: #5D4037; /* Dark chocolate text */
     text-align: center;
     padding: 100px 20px;
-    background-color: #555; /* Fallback color */
+    
+    /* You can still add a background image if you like! */
+    /* background-image: url('your-image.jpg'); */
+    /* background-blend-mode: multiply; */
 }
 
 .hero h1 {
-    font-size: 3em;
+    font-family: 'Playfair Display', serif; /* Heading Font */
+    font-size: 3.2em;
     margin: 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .hero p {
     font-size: 1.2em;
     margin: 10px 0 20px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    opacity: 0.8;
 }
 
 .cta-button {
-    background-color: #D9534F;
+    background-color: #E69597; /* Main raspberry pink */
     color: white;
-    padding: 12px 25px;
+    padding: 14px 28px;
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
     transition: background-color 0.3s;
+    font-size: 1em;
 }
 
 .cta-button:hover {
-    background-color: #C9302C;
+    background-color: #D46A6A; /* Darker, dusty rose pink */
 }
 
 /* --- 2. Shop by Category Section --- */
@@ -92,14 +104,15 @@ nav a:hover {
     flex-basis: 300px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0; /* Subtle border like a craft card */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Softer shadow */
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .category-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.07);
 }
 
 .category-card img {
@@ -109,9 +122,11 @@ nav a:hover {
 }
 
 .category-card h3 {
+    font-family: 'Playfair Display', serif; /* Heading Font */
     padding: 20px;
     margin: 0;
-    color: #D9534F;
+    color: #D46A6A; /* Darker, dusty rose pink */
+    font-size: 1.4em;
 }
 
 /* --- 3. Trust Signals Section --- */
@@ -119,7 +134,7 @@ nav a:hover {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    background-color: #FDFDFD;
+    background-color: #FFFFFF;
     padding: 40px 20px;
     margin-top: 40px;
     border-top: 1px solid #eee;
@@ -127,19 +142,28 @@ nav a:hover {
 }
 
 .signal {
-    flex-basis: 200px;
+    flex-basis: 220px;
     text-align: center;
     padding: 10px;
 }
 
+/* Style for the new icons/emojis */
+.signal-icon {
+    font-size: 2.5em;
+    line-height: 1;
+}
+
 .signal h4 {
+    font-family: 'Playfair Display', serif; /* Heading Font */
+    font-size: 1.2em;
     margin: 10px 0 5px;
-    color: #333;
+    color: #5D4037;
 }
 
 .signal p {
     font-size: 0.9em;
-    color: #666;
+    color: #5D4037;
+    opacity: 0.7;
     margin: 0;
 }
 
@@ -147,6 +171,12 @@ nav a:hover {
 .bestsellers {
     padding-top: 40px;
     text-align: center;
+}
+
+.bestsellers h2 {
+    font-family: 'Playfair Display', serif; /* Heading Font */
+    font-size: 2.5em;
+    margin-bottom: 30px;
 }
 
 .product-grid {
@@ -161,9 +191,16 @@ nav a:hover {
     flex-basis: 280px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0; /* Subtle border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Softer shadow */
     overflow: hidden;
     text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.07);
 }
 
 .product-card img {
@@ -173,57 +210,76 @@ nav a:hover {
 }
 
 .product-card-content {
-    padding: 15px;
+    padding: 20px;
 }
 
 .product-card h4 {
+    font-family: 'Playfair Display', serif; /* Heading Font */
     margin: 0 0 10px;
-    font-size: 1.1em;
+    font-size: 1.25em;
 }
 
 .product-card p {
     font-size: 1.2em;
     font-weight: bold;
-    color: #D9534F;
+    color: #E69597; /* Main raspberry pink */
     margin: 0;
 }
 
 /* --- 5. Customer Testimonials --- */
 .testimonials {
     text-align: center;
-    background-color: #FDFDFD;
-    padding: 40px 20px;
+    background-color: #FFFFFF;
+    padding: 60px 20px;
     margin-top: 40px;
+}
+
+.testimonials h2 {
+    font-family: 'Playfair Display', serif; /* Heading Font */
+    font-size: 2.5em;
+    margin-bottom: 20px;
 }
 
 .testimonial-quote {
     max-width: 600px;
     margin: 20px auto;
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-style: italic;
-    color: #555;
+    color: #5D4037;
+    opacity: 0.8;
+}
+
+.testimonial-quote p:last-child {
+    font-style: normal;
+    font-weight: bold;
+    opacity: 1;
+    margin-top: 15px;
 }
 
 /* --- Footer --- */
 footer {
     text-align: center;
     padding: 40px 20px;
-    background-color: #333;
-    color: #fff;
+    background-color: #5D4037; /* Dark chocolate background */
+    color: #FFFBF7; /* Creamy text */
     margin-top: 40px;
 }
 
 footer p {
     margin: 5px 0;
+    opacity: 0.8;
 }
 
 /* --- Mobile Responsive --- */
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 2.2em;
+        font-size: 2.5em;
     }
     .trust-signals, .category-grid, .product-grid {
         flex-direction: column;
         align-items: center;
+    }
+    .signal {
+        margin-bottom: 20px;
     }
 }
