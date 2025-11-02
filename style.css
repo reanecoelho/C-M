@@ -1,381 +1,75 @@
-/* --- 1. Loader Screen --- */
-#loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /* Use the light pink from our hero section */
-    background-color: #F8E8E8; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Make sure it's on top of everything */
-    z-index: 9999;
-    /* This is for the fade-out */
-    transition: opacity 0.75s ease, visibility 0.75s ease;
-}
+/* * JavaScript for Cakes & Moulds
+ * This file adds interactivity to the website.
+ */
 
-/* This class will be added by JavaScript to hide the loader */
-#loader-wrapper.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
+// This waits for the HTML document to be ready
+document.addEventListener('DOMContentLoaded', () => {
 
-/* The "cutesy" pulsing animation */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.07); }
-    100% { transform: scale(1); }
-}
+    console.log("Cakes & Moulds site loaded and script.js is running!");
 
-/* --- CSS Cake Logo (Identical to yours) --- */
-.loader-cake {
-    /* This is the white circle background */
-    width: 150px;
-    height: 150px;
-    background: #fff;
-    border-radius: 50%;
-    /* Chocolate brown border from our theme */
-    border: 8px solid #5D4037; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 10px; 
-    box-sizing: border-box;
-    /* Apply the animation! */
-    animation: pulse 1.5s infinite ease-in-out;
-}
+    // --- Example 1: Make navigation links scroll smoothly ---
+    // Selects all navigation links that start with a '#'
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-.cake-hearts {
-    display: flex;
-}
-
-.heart {
-    width: 15px;
-    height: 15px;
-    background: #5D4037; /* Brown heart */
-    margin: 0 3px;
-    transform: rotate(-45deg);
-    position: relative;
-}
-.heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: #5D4037;
-    border-radius: 50%;
-}
-.heart::before { top: -8px; left: 0; }
-.heart::after { top: 0; left: 8px; }
-
-.cake-frosting-top {
-    width: 80px;
-    height: 15px;
-    background: #E69597; /* Raspberry pink */
-    border-radius: 5px;
-    margin-top: 8px;
-}
-.cake-layer-top {
-    width: 80px;
-    height: 20px;
-    background: #5D4037; /* Brown */
-}
-.cake-frosting-mid {
-    width: 80px;
-    height: 10px;
-    background: #E69597; /* Pink */
-}
-.cake-layer-bottom {
-    width: 80px;
-    height: 20px;
-    background: #5D4037; /* Brown */
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
+    navLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            // 1. Stop the browser's default "jump" behavior
+            event.preventDefault(); 
+            
+            // 2. Get the ID of the section to scroll to (e.g., "#menu")
+            const targetId = link.getAttribute('href');
+            
+            // 3. Find that section on the page
+            const targetSection = document.querySelector(targetId);
+            
+            // 4. Tell the browser to scroll to it smoothly
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 
 
-/* --- 2. Google Fonts Import (The "Vibe") --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+    // --- Example 2: Show a (fake) "Add to Cart" message ---
+    // Selects all the product cards
+    const productCards = document.querySelectorAll('.product-card');
 
-/* Playfair Display: Our new elegant, "crafty" serif font for headings.
-   Lato: Our new clean, readable sans-serif font for all body text.
-*/
+    productCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // 1. Get the name of the product from inside the card
+            // .querySelector('h4') finds the <h4> element *within* this specific card
+            const productName = card.querySelector('h4').textContent;
+            
+            // 2. Show a simple pop-up alert
+            alert(`You clicked on ${productName}! This could be an "Add to Cart" button.`);
+        });
+    });
 
-/* --- 3. Basic Setup (Our "Twist") --- */
-body {
-    font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #FFFBF7; /* Warm, creamy paper background */
-    color: #5D4037; /* Dark chocolate brown text */
-}
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
+    // --- Example 3: A simple console log on the "Browse Menu" button ---
+    const menuButton = document.querySelector('.cta-button');
+    
+    // We can add more than one 'click' listener to an element
+    menuButton.addEventListener('click', () => {
+        console.log("Hero button clicked!");
+        // Note: This will fire *in addition* to the smooth scroll,
+        // because the smooth scroll is on the nav links
+    });
 
-/* --- 4. Header & Navigation --- */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
+}); // <-- End of the DOMContentLoaded listener
 
-.logo {
-    font-family: 'Playfair Display', serif; /* Heading Font */
-    font-size: 1.7em;
-    font-weight: 700;
-    color: #D46A6A; /* Darker, dusty rose pink */
-}
 
-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #5D4037; /* Dark chocolate text */
-    font-weight: 700; /* Bolder nav links */
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #E69597; /* Main raspberry pink on hover */
-}
-
-/* --- 5. Hero Section --- */
-.hero {
-    /* Switched to a light background with dark text for the "crafty" vibe */
-    background-color: #F8E8E8; /* Very light, soft pink */
-    color: #5D4037; /* Dark chocolate text */
-    text-align: center;
-    padding: 100px 20px;
-}
-
-.hero h1 {
-    font-family: 'Playfair Display', serif; /* Heading Font */
-    font-size: 3.2em;
-    margin: 0;
-}
-
-.hero p {
-    font-size: 1.2em;
-    margin: 10px 0 20px;
-    opacity: 0.8;
-}
-
-.cta-button {
-    background-color: #E69597; /* Main raspberry pink */
-    color: white;
-    padding: 14px 28px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-size: 1em;
-}
-
-.cta-button:hover {
-    background-color: #D46A6A; /* Darker, dusty rose pink */
-}
-
-/* --- 6. Shop by Category Section --- */
-.category-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    text-align: center;
-    margin-top: 40px;
-}
-
-.category-card {
-    flex-basis: 300px;
-    background-color: #fff;
-    border-radius: 8px;
-    border: 1px solid #f0f0f0; /* Subtle border like a craft card */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Softer shadow */
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.07);
-}
-
-.category-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.category-card h3 {
-    font-family: 'Playfair Display', serif; /* Heading Font */
-    padding: 20px;
-    margin: 0;
-    color: #D46A6A; /* Darker, dusty rose pink */
-    font-size: 1.4em;
-}
-
-/* --- 7. Trust Signals Section --- */
-.trust-signals {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    background-color: #FFFFFF;
-    padding: 40px 20px;
-    margin-top: 40px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-}
-
-.signal {
-    flex-basis: 220px;
-    text-align: center;
-    padding: 10px;
-}
-
-/* Style for the new icons/emojis */
-.signal-icon {
-    font-size: 2.5em;
-    line-height: 1;
-}
-
-.signal h4 {
-    font-family: 'Playfair Display', serif; /* Heading Font */
-    font-size: 1.2em;
-    margin: 10px 0 5px;
-    color: #5D4037;
-}
-
-.signal p {
-    font-size: 0.9em;
-    color: #5D4037;
-    opacity: 0.7;
-    margin: 0;
-}
-
-/* --- 8. Best-Sellers Section --- */
-.bestsellers {
-    padding-top: 40px;
-    text-align: center;
-}
-
-.bestsellers h2 {
-    font-family: 'Playfair Display', serif; /* Heading Font */
-    font-size: 2.5em;
-    margin-bottom: 30px;
-}
-
-.product-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.product-card {
-    flex-basis: 280px;
-    background: #fff;
-    border-radius: 8px;
-    border: 1px solid #f0f0f0; /* Subtle border */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Softer shadow */
-    overflow: hidden;
-    text-align: left;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.07);
-}
-
-.product-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-
-.product-card-content {
-    padding: 20px;
-}
-
-.product-card h4 {
-    font-family: 'Playfair Display', serif; /* Heading Font */
-    margin: 0 0 10px;
-    font-size: 1.25em;
-}
-
-.product-card p {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #E69597; /* Main raspberry pink */
-    margin: 0;
-}
-
-/* --- 9. Customer Testimonials --- */
-.testimonials {
-    text-align: center;
-    background-color: #FFFFFF;
-    padding: 60px 20px;
-    margin-top: 40px;
-}
-
-.testimonials h2 {
-    font-family: 'Playfair Display', serif; /* Heading Font */
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.testimonial-quote {
-    max-width: 600px;
-    margin: 20px auto;
-    font-size: 1.2em;
-    font-style: italic;
-    color: #5D4037;
-    opacity: 0.8;
-}
-
-.testimonial-quote p:last-child {
-    font-style: normal;
-    font-weight: bold;
-    opacity: 1;
-    margin-top: 15px;
-}
-
-/* --- 10. Footer --- */
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #5D4037; /* Dark chocolate background */
-    color: #FFFBF7; /* Creamy text */
-    margin-top: 40px;
-}
-
-footer p {
-    margin: 5px 0;
-    opacity: 0.8;
-}
-
-/* --- 11. Mobile Responsive --- */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5em;
-    }
-    .trust-signals, .category-grid, .product-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-    .signal {
-        margin-bottom: 20px;
-    }
-}
+// --- Loader Logic ---
+// This waits for the *entire* page (all images, fonts, etc.) to fully load
+// I have fixed the typo that was here before.
+window.onload = () => {
+  const loader = document.getElementById('loader-wrapper');
+  if (loader) {
+    // Add the 'hidden' class to trigger the CSS fade-out
+    loader.classList.add('hidden');
+  }
+};
 
