@@ -8,7 +8,7 @@
     <!-- This links your CSS file -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- NEW: Adding Font Awesome for the carousel arrows -->
+    <!-- Adding Font Awesome for icons (carousel, hamburger, close) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -33,12 +33,21 @@
     <!-- Header & Navigation -->
     <header>
         <div class="logo">Cakes & Moulds</div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#menu">Our Menu</a>
-            <a href="#bulk">Best Sellers</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+        
+        <!-- NEW: Hamburger Button (mobile only) -->
+        <button id="hamburger-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Updated Nav -->
+        <nav id="mobile-menu">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#menu" class="nav-link">Our Menu</a>
+            <a href="#bulk" class="nav-link">Best Sellers</a>
+            <a href="#about" class="nav-link">About</a>
+            <!-- NEW: "How to Order" Link -->
+            <a href="#" id="how-to-order-link" class="nav-link">How to Order</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
@@ -50,7 +59,7 @@
     </section>
 
     <!-- 2. "PINTEREST-Y" Shop by Category Section -->
-    <section class="container" id="menu">
+    <section class="container reveal-on-scroll" id="menu">
         <h2 class="section-title">Shop by Category</h2>
         <div class="masonry-grid">
             <!-- These cards will stack like bricks. Use different image heights! -->
@@ -66,7 +75,6 @@
                 <img src="https://placehold.co/400x400/F8E8E8/5D4037?text=Hampers" alt="Hampers & Gifting">
                 <h3>Hampers & Gifting</h3>
             </div>
-            <!-- Add more categories as you like -->
              <div class="masonry-card">
                 <img src="https://placehold.co/400x400/F8E8E8/5D4037?text=Mini+Pizzas" alt="Mini Pizzas">
                 <h3>Mini Pizzas</h3>
@@ -83,7 +91,7 @@
     </section>
 
     <!-- 3. Trust Signals Section (with new icons) -->
-    <section class="trust-signals">
+    <section class="trust-signals reveal-on-scroll">
         <div class="signal">
             <div class="signal-icon">🧁</div>
             <h4>Freshly Baked to Order</h4>
@@ -107,7 +115,7 @@
     </section>
 
     <!-- 4. "CAROUSEL" Best-Sellers Section -->
-    <section class="container bestsellers" id="bulk">
+    <section class="container bestsellers reveal-on-scroll" id="bulk">
         <h2 class="section-title">Our Best-Sellers</h2>
         
         <!-- This is the new Carousel structure -->
@@ -162,7 +170,7 @@
     </section>
     
     <!-- 5. Customer Testimonials -->
-    <section class="testimonials" id="about">
+    <section class="testimonials reveal-on-scroll" id="about">
         <h2 class="section-title">What Our Customers Say</h2>
         <div class="testimonial-quote">
             <p>"This is where you can put a screenshot or a quote from one of your happy customers on Instagram. It builds a lot of trust!"</p>
@@ -175,6 +183,28 @@
         <p>© 2025 Cakes & Moulds. All Rights Reserved.</p>
         <p>Follow us on Instagram: @cakes_and_moulds</p>
     </footer>
+
+    <!-- ===== NEW: "How to Order" Modal ===== -->
+    <div id="modal-overlay">
+        <div id="modal-content">
+            <button id="modal-close-btn"><i class="fas fa-times"></i></button>
+            <h2 class="section-title">How to Order</h2>
+            <p>We're so excited to bake for you! Here's how to get your treats:</p>
+            <ul>
+                <li>✨ All orders are custom. Please order at least <strong>24 hours</strong> in advance.</li>
+                <li>💌 The best way to order is via <strong>Instagram DM</strong>.</li>
+                <li>📍 We are based in [Your City/Area]. Pickup details will be confirmed with your order.</li>
+                <li>💳 Payments can be made via GPay or bank transfer.</li>
+            </ul>
+            <a href="https://www.instagram.com/cakes_and_moulds" target="_blank" class="cta-button">DM Us to Order!</a>
+        </div>
+    </div>
+    <!-- ===== END MODAL ===== -->
+
+    <!-- ===== NEW: Scroll to Top Button ===== -->
+    <button id="scroll-to-top-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- This line links your JavaScript file. It must be spelled perfectly. -->
     <script src="script.js"></script>
