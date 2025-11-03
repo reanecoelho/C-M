@@ -7,6 +7,9 @@
     
     <!-- This links your CSS file -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- NEW: Adding Font Awesome for the carousel arrows -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -33,7 +36,7 @@
         <nav>
             <a href="#home">Home</a>
             <a href="#menu">Our Menu</a>
-            <a href="#bulk">Bulk Orders</a>
+            <a href="#bulk">Best Sellers</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -46,20 +49,35 @@
         <a href="#menu" class="cta-button">Browse Our Menu</a>
     </section>
 
-    <!-- 2. Shop by Category Section -->
+    <!-- 2. "PINTEREST-Y" Shop by Category Section -->
     <section class="container" id="menu">
-        <div class="category-grid">
-            <div class="category-card">
-                <img src="https://via.placeholder.com/300x250.png?text=Savoury+Items+Photo" alt="Savoury Menu">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="masonry-grid">
+            <!-- These cards will stack like bricks. Use different image heights! -->
+            <div class="masonry-card">
+                <img src="https://placehold.co/400x500/F8E8E8/5D4037?text=Savoury+Menu" alt="Savoury Menu">
                 <h3>Savoury Menu</h3>
             </div>
-            <div class="category-card">
-                <img src="https://via.placeholder.com/300x250.png?text=Sweet+Treats+Photo" alt="Sweet Treats">
+            <div class="masonry-card">
+                <img src="https://placehold.co/400x600/F8E8E8/5D4037?text=Sweet+Treats" alt="Sweet Treats">
                 <h3>Sweet Treats</h3>
             </div>
-            <div class="category-card">
-                <img src="https://via.placeholder.com/300x250.png?text=Hampers+Photo" alt="Hampers & Gifting">
+            <div class="masonry-card">
+                <img src="https://placehold.co/400x400/F8E8E8/5D4037?text=Hampers" alt="Hampers & Gifting">
                 <h3>Hampers & Gifting</h3>
+            </div>
+            <!-- Add more categories as you like -->
+             <div class="masonry-card">
+                <img src="https://placehold.co/400x400/F8E8E8/5D4037?text=Mini+Pizzas" alt="Mini Pizzas">
+                <h3>Mini Pizzas</h3>
+            </div>
+             <div class="masonry-card">
+                <img src="https://placehold.co/400x700/F8E8E8/5D4037?text=Doughnuts" alt="Doughnuts">
+                <h3>Doughnuts</h3>
+            </div>
+             <div class="masonry-card">
+                <img src="https://placehold.co/400x500/F8E8E8/5D4037?text=Cupcakes" alt="Cupcakes">
+                <h3>Cupcakes</h3>
             </div>
         </div>
     </section>
@@ -88,48 +106,64 @@
         </div>
     </section>
 
-    <!-- 4. Best-Sellers Section -->
-    <section class="container bestsellers">
-        <h2>Our Best-Sellers</h2>
-        <div class="product-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/280x220.png?text=Mini+Crunchy+Burger" alt="Mini Crunchy Burger">
-                <div class="product-card-content">
-                    <h4>Mini Crunchy Burger</h4>
-                    <p>₹70</p>
+    <!-- 4. "CAROUSEL" Best-Sellers Section -->
+    <section class="container bestsellers" id="bulk">
+        <h2 class="section-title">Our Best-Sellers</h2>
+        
+        <!-- This is the new Carousel structure -->
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <!-- All products are now "slides" -->
+                <!-- Product 1 -->
+                <div class="product-card carousel-slide">
+                    <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Mini+Crunchy+Burger" alt="Mini Crunchy Burger">
+                    <div class="product-card-content">
+                        <h4>Mini Crunchy Burger</h4>
+                        <p>₹70</p>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card carousel-slide">
+                    <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Filled+Doughnuts" alt="Filled Doughnuts">
+                    <div class="product-card-content">
+                        <h4>Filled Doughnuts</h4>
+                        <p>From ₹90</p>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card carousel-slide">
+                    <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Korean+Garlic+Buns" alt="Korean Garlic Buns">
+                    <div class="product-card-content">
+                        <h4>Korean Garlic Buns</h4>
+                        <p>₹60 / ₹90</p>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card carousel-slide">
+                    <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Red+Velvet+Cupcakes" alt="Red Velvet Cupcakes">
+                    <div class="product-card-content">
+                        <h4>Red Velvet Cupcakes</h4>
+                        <p>Contact for price</p>
+                    </div>
+                </div>
+                <!-- Product 5 (Extra) -->
+                <div class="product-card carousel-slide">
+                    <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Pita+Pockets" alt="Pita Pockets">
+                    <div class="product-card-content">
+                        <h4>Pita Pockets</h4>
+                        <p>₹70</p>
+                    </div>
                 </div>
             </div>
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/280x220.png?text=Filled+Doughnuts" alt="Filled Doughnuts">
-                <div class="product-card-content">
-                    <h4>Filled Doughnuts</h4>
-                    <p>From ₹90</p>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/280x220.png?text=Korean+Garlic+Buns" alt="Korean Garlic Buns">
-                <div class="product-card-content">
-                    <h4>Korean Garlic Buns</h4>
-                    <p>₹60 / ₹90</p>
-                </div>
-            </div>
-            <!-- Product 4 -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/280x220.png?text=Red+Velvet+Cupcakes" alt="Red Velvet Cupcakes">
-                <div class="product-card-content">
-                    <h4>Red Velvet Cupcakes</h4>
-                    <p>Contact for price</p>
-                </div>
-            </div>
+            <!-- Carousel Navigation Buttons -->
+            <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
     
     <!-- 5. Customer Testimonials -->
-    <section class="testimonials">
-        <h2>What Our Customers Say</h2>
+    <section class="testimonials" id="about">
+        <h2 class="section-title">What Our Customers Say</h2>
         <div class="testimonial-quote">
             <p>"This is where you can put a screenshot or a quote from one of your happy customers on Instagram. It builds a lot of trust!"</p>
             <p><strong>- Happy Customer</strong></p>
@@ -142,7 +176,7 @@
         <p>Follow us on Instagram: @cakes_and_moulds</p>
     </footer>
 
-    <!-- This links your JavaScript file -->
+    <!-- This line links your JavaScript file. It must be spelled perfectly. -->
     <script src="script.js"></script>
 </body>
 </html>
