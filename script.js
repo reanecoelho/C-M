@@ -2,27 +2,29 @@
  * This file adds interactivity to the website.
  */
 
-// This waits for the HTML document to be ready
+// This waits for the HTML document to be ready, which is fast!
 document.addEventListener('DOMContentLoaded', () => {
 
     console.log("Cakes & Moulds site loaded and script.js is running!");
 
-    // --- Example 1: Make navigation links scroll smoothly ---
-    // Selects all navigation links that start with a '#'
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    // --- 1. LOADER LOGIC ---
+    const loader = document.getElementById('loader-wrapper');
+    if (loader) {
+        // Add the 'hidden' class to trigger the CSS fade-out
+        loader.classList.add('hidden');
+        console.log("Loader hidden!");
+    } else {
+        console.log("Loader not found.");
+    }
 
+    // --- 2. Make navigation links scroll smoothly ---
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', (event) => {
-            // 1. Stop the browser's default "jump" behavior
             event.preventDefault(); 
-            
-            // 2. Get the ID of the section to scroll to (e.g., "#menu")
             const targetId = link.getAttribute('href');
-            
-            // 3. Find that section on the page
             const targetSection = document.querySelector(targetId);
             
-            // 4. Tell the browser to scroll to it smoothly
             if (targetSection) {
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
@@ -32,44 +34,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-    // --- Example 2: Show a (fake) "Add to Cart" message ---
-    // Selects all the product cards
-    const productCards = document.querySelectorAll('.product-card');
+    // --- 3. Redirect product clicks to Instagram ---
+    // This now selects ALL product cards, in the carousel OR grid
+    const productCards = document.querySelectorAll('.product-card, .masonry-card');
+    const instagramUrl = "https://www.instagram.com/cakes_and_moulds";
 
     productCards.forEach(card => {
         card.addEventListener('click', () => {
-            // 1. Get the name of the product from inside the card
-            // .querySelector('h4') finds the <h4> element *within* this specific card
-            const productName = card.querySelector('h4').textContent;
+            const productName = card.querySelector('h4, h3').textContent; // Gets h4 (product) or h3 (category)
+            console.log(`Clicked on ${productName}! Redirecting to Instagram...`);
             
-            // 2. Show a simple pop-up alert
-            alert(`You clicked on ${productName}! This could be an "Add to Cart" button.`);
+            // This opens your Instagram profile in a new tab
+            window.open(instagramUrl, '_blank');
         });
     });
 
-
-    // --- Example 3: A simple console log on the "Browse Menu" button ---
+    // --- 4. A simple console log on the "Browse Menu" button ---
     const menuButton = document.querySelector('.cta-button');
+    if (menuButton) {
+        menuButton.addEventListener('click', () => {
+            console.log("Hero button clicked!");
+        });
+    }
+
+    // --- 5. NEW: Carousel Logic ---
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (carouselWrapper && prevBtn && nextBtn) {
+        
+        // Function to scroll the carousel
+        const scrollCarousel = (direction) => {
+            const slideWidth = carouselWrapper.querySelector('.carousel-slide').clientWidth;
+            const slideMargin = parseFloat(window.getComputedStyle(carouselWrapper.querySelector('.carousel-slide')).marginRight);
+            const scrollAmount = slideWidth + slideMargin;
+
+            if (direction === 'next') {
+                carouselWrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            } else {
+                carouselWrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            }
+        };
+
+        // Go to the next slide
+        nextBtn.addEventListener('click', () => {
+            scrollCarousel('next');
+        });
+
+        // Go to the previous slide
+        prevBtn.addEventListener('click', () => {
+            scrollCarousel('prev');
+        });
     
-    // We can add more than one 'click' listener to an element
-    menuButton.addEventListener('click', () => {
-        console.log("Hero button clicked!");
-        // Note: This will fire *in addition* to the smooth scroll,
-        // because the smooth scroll is on the nav links
-    });
+    } else {
+        console.log("Carousel elements not found.");
+    }
 
 }); // <-- End of the DOMContentLoaded listener
-
-
-// --- Loader Logic ---
-// This waits for the *entire* page (all images, fonts, etc.) to fully load
-// This is the fixed part that hides the loader!
-window.onload = () => {
-  const loader = document.getElementById('loader-wrapper');
-  if (loader) {
-    // Add the 'hidden' class to trigger the CSS fade-out
-    loader.classList.add('hidden');
-  }
-};
 
