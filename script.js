@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 2. Make navigation links scroll smoothly ---
+    // Updated selector to get links from the new nav AND the "how to order" link
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', (event) => {
@@ -30,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth',
                     block: 'start'
                 });
+            }
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('menu-open')) {
+                mobileMenu.classList.remove('menu-open');
             }
         });
     });
@@ -57,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 5. NEW: Carousel Logic ---
+    // --- 5. Carousel Logic ---
     const carouselWrapper = document.querySelector('.carousel-wrapper');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
@@ -90,6 +96,86 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.log("Carousel elements not found.");
     }
+
+    // --- 6. NEW: Hamburger Menu Logic ---
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('menu-open');
+        });
+    }
+
+    // --- 7. NEW: "How to Order" Modal Logic ---
+    const modalOverlay = document.getElementById('modal-overlay');
+    const orderLink = document.getElementById('how-to-order-link');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    if (modalOverlay && orderLink && modalCloseBtn) {
+        // Open modal
+        orderLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modalOverlay.classList.add('modal-visible');
+        });
+        
+        // Close modal with button
+        modalCloseBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('modal-visible');
+        });
+
+        // Close modal by clicking outside
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('modal-visible');
+            }
+        });
+    }
+
+    // --- 8. NEW: Scroll to Top Button Logic ---
+    const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+
+    if (scrollToTopBtn) {
+        // Show/hide button based on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top on click
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // --- 9. NEW: Dynamic Scroll Reveal Logic ---
+    // Use IntersectionObserver for better performance
+    const sectionsToReveal = document.querySelectorAll('.reveal-on-scroll');
+    
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once it's visible
+            }
+        });
+    };
+
+    const revealObserver = new IntersectionObserver(revealCallback, {
+        root: null, // relative to the viewport
+        threshold: 0.1 // 10% of the item must be visible
+    });
+
+    // Observe each section
+    sectionsToReveal.forEach(section => {
+        revealObserver.observe(section);
+    });
 
 }); // <-- End of the DOMContentLoaded listener
 
