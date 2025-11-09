@@ -40,20 +40,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. Redirect product clicks to Instagram ---
-    // This now selects ALL product cards, in the carousel OR grid
+    // --- 3. OLD REDIRECT LOGIC IS REPLACED BY "QUICK VIEW" MODAL LOGIC (Feature 1) ---
     const productCards = document.querySelectorAll('.product-card, .masonry-card');
-    const instagramUrl = "https://www.instagram.com/cakes_and_moulds";
+    const quickViewOverlay = document.getElementById('quick-view-overlay');
+    const quickViewCloseBtn = document.getElementById('quick-view-close-btn');
+    const quickViewImage = document.getElementById('quick-view-image');
+    const quickViewTitle = document.getElementById('quick-view-title');
+    const quickViewPrice = document.getElementById('quick-view-price');
 
-    productCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const productName = card.querySelector('h4, h3').textContent; // Gets h4 (product) or h3 (category)
-            console.log(`Clicked on ${productName}! Redirecting to Instagram...`);
-            
-            // This opens your Instagram profile in a new tab
-            window.open(instagramUrl, '_blank');
+    if (quickViewOverlay) {
+        productCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // 1. Get data from the clicked card
+                const imageSrc = card.querySelector('img').src;
+                const title = card.querySelector('h4, h3').textContent;
+                // Try to find a price, default if not found
+                const priceEl = card.querySelector('p');
+                const price = priceEl ? priceEl.textContent : 'Contact for Price';
+
+                // 2. Populate the modal
+                quickViewImage.src = imageSrc;
+                quickViewTitle.textContent = title;
+                quickViewPrice.textContent = price;
+
+                // 3. Show the modal
+                quickViewOverlay.classList.add('modal-visible');
+            });
         });
-    });
+
+        // Close modal with button
+        quickViewCloseBtn.addEventListener('click', () => {
+            quickViewOverlay.classList.remove('modal-visible');
+        });
+
+        // Close modal by clicking outside
+        quickViewOverlay.addEventListener('click', (e) => {
+            if (e.target === quickViewOverlay) {
+                quickViewOverlay.classList.remove('modal-visible');
+            }
+        });
+    }
+
 
     // --- 4. A simple console log on the "Browse Menu" button ---
     const menuButton = document.querySelector('.cta-button');
@@ -97,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Carousel elements not found.");
     }
 
-    // --- 6. NEW: Hamburger Menu Logic ---
+    // --- 6. Hamburger Menu Logic ---
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     
@@ -107,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 7. NEW: "How to Order" Modal Logic ---
+    // --- 7. "How to Order" Modal Logic ---
     const modalOverlay = document.getElementById('modal-overlay');
     const orderLink = document.getElementById('how-to-order-link');
     const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -132,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 8. NEW: Scroll to Top Button Logic ---
+    // --- 8. Scroll to Top Button Logic ---
     const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
 
     if (scrollToTopBtn) {
@@ -154,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 9. NEW: Dynamic Scroll Reveal Logic ---
+    // --- 9. Dynamic Scroll Reveal Logic ---
     // Use IntersectionObserver for better performance
     const sectionsToReveal = document.querySelectorAll('.reveal-on-scroll');
     
@@ -177,5 +204,56 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(section);
     });
 
-}); // <-- End of the DOMContentLoaded listener
+    // --- 10. NEW: Testimonial Auto-Slide Logic (Feature 3) ---
+    const slides = document.querySelectorAll('.testimonial-slide');
+    let currentSlide = 0;
 
+    if (slides.length > 0) {
+        const showSlide = (index) => {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        };
+
+        const nextSlide = () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        };
+
+        // Show the first slide immediately
+        showSlide(currentSlide);
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+    }
+
+    // --- 11. NEW: Live Category Filter Logic (Feature 2) ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const masonryCards = document.querySelectorAll('.masonry-card');
+
+    if (filterButtons.length > 0 && masonryCards.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Set active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+
+                // Show/hide cards
+                masonryCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || filterValue === cardCategory) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    }
+
+
+}); // <-- End of the DOMContentLoaded listener
