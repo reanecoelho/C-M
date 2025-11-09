@@ -44,7 +44,7 @@
             <a href="#home" class="nav-link">Home</a>
             <a href="#menu" class="nav-link">Our Menu</a>
             <a href="#bulk" class="nav-link">Best Sellers</a>
-            <a href="#about" class="nav-link">About</a>
+            <a href="#about" class="nav-link">About Me</a>
             <!-- NEW: "How to Order" Link -->
             <a href="#" id="how-to-order-link" class="nav-link">How to Order</a>
             <a href="#contact" class="nav-link">Contact</a>
@@ -61,36 +61,68 @@
     <!-- 2. "PINTEREST-Y" Shop by Category Section -->
     <section class="container reveal-on-scroll" id="menu">
         <h2 class="section-title">Shop by Category</h2>
+        
+        <!-- NEW: Live Category Filter -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="savoury">Savoury</button>
+            <button class="filter-btn" data-filter="sweet">Sweet Treats</button>
+            <button class="filter-btn" data-filter="hampers">Hampers</button>
+        </div>
+
         <div class="masonry-grid">
-            <!-- These cards will stack like bricks. Use different image heights! -->
-            <div class="masonry-card">
-                <img src="https://placehold.co/400x500/F8E8E8/5D4037?text=Savoury+Menu" alt="Savoury Menu">
-                <h3>Savoury Menu</h3>
+            <!-- Card 1 (Savoury) -->
+            <div class="masonry-card" data-category="savoury">
+                <img src="https://placehold.co/400x500/F8E8E8/5D4037?text=Korean+Buns" alt="Savoury Menu">
+                <div class="card-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <h3>Korean Garlic Buns</h3>
             </div>
-            <div class="masonry-card">
-                <img src="https://placehold.co/400x600/F8E8E8/5D4037?text=Sweet+Treats" alt="Sweet Treats">
-                <h3>Sweet Treats</h3>
+            <!-- Card 2 (Sweet) -->
+            <div class="masonry-card" data-category="sweet">
+                <img src="https://placehold.co/400x600/F8E8E8/5D4037?text=Doughnuts" alt="Sweet Treats">
+                <div class="card-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <h3>Filled Doughnuts</h3>
             </div>
-            <div class="masonry-card">
+            <!-- Card 3 (Hampers) -->
+            <div class="masonry-card" data-category="hampers">
                 <img src="https://placehold.co/400x400/F8E8E8/5D4037?text=Hampers" alt="Hampers & Gifting">
-                <h3>Hampers & Gifting</h3>
+                <div class="card-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <h3>Gift Hampers</h3>
             </div>
-             <div class="masonry-card">
+             <!-- Card 4 (Savoury) -->
+            <div class="masonry-card" data-category="savoury">
                 <img src="https://placehold.co/400x400/F8E8E8/5D4037?text=Mini+Pizzas" alt="Mini Pizzas">
+                <div class="card-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
                 <h3>Mini Pizzas</h3>
             </div>
-             <div class="masonry-card">
-                <img src="https://placehold.co/400x700/F8E8E8/5D4037?text=Doughnuts" alt="Doughnuts">
-                <h3>Doughnuts</h3>
+             <!-- Card 5 (Sweet) -->
+            <div class="masonry-card" data-category="sweet">
+                <img src="https://placehold.co/400x700/F8E8E8/5D4037?text=Cupcakes" alt="Cupcakes">
+                <div class="card-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <h3>Red Velvet Cupcakes</h3>
             </div>
-             <div class="masonry-card">
-                <img src="https://placehold.co/400x500/F8E8E8/5D4037?text=Cupcakes" alt="Cupcakes">
-                <h3>Cupcakes</h3>
+             <!-- Card 6 (Sweet) -->
+            <div class="masonry-card" data-category="sweet">
+                <img src="https://placehold.co/400x500/F8E8E8/5D4037?text=Brownies" alt="Brownies">
+                <div class="card-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <h3>Fudgy Brownies</h3>
             </div>
         </div>
     </section>
 
-    <!-- 3. Trust Signals Section (with new icons) -->
+    <!-- 3. Trust Signals Section -->
     <section class="trust-signals reveal-on-scroll">
         <div class="signal">
             <div class="signal-icon">🧁</div>
@@ -118,13 +150,14 @@
     <section class="container bestsellers reveal-on-scroll" id="bulk">
         <h2 class="section-title">Our Best-Sellers</h2>
         
-        <!-- This is the new Carousel structure -->
         <div class="carousel-container">
             <div class="carousel-wrapper">
-                <!-- All products are now "slides" -->
                 <!-- Product 1 -->
                 <div class="product-card carousel-slide">
                     <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Mini+Crunchy+Burger" alt="Mini Crunchy Burger">
+                    <div class="card-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
                     <div class="product-card-content">
                         <h4>Mini Crunchy Burger</h4>
                         <p>₹70</p>
@@ -133,6 +166,9 @@
                 <!-- Product 2 -->
                 <div class="product-card carousel-slide">
                     <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Filled+Doughnuts" alt="Filled Doughnuts">
+                    <div class="card-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
                     <div class="product-card-content">
                         <h4>Filled Doughnuts</h4>
                         <p>From ₹90</p>
@@ -141,6 +177,9 @@
                 <!-- Product 3 -->
                 <div class="product-card carousel-slide">
                     <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Korean+Garlic+Buns" alt="Korean Garlic Buns">
+                    <div class="card-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
                     <div class="product-card-content">
                         <h4>Korean Garlic Buns</h4>
                         <p>₹60 / ₹90</p>
@@ -149,6 +188,9 @@
                 <!-- Product 4 -->
                 <div class="product-card carousel-slide">
                     <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Red+Velvet+Cupcakes" alt="Red Velvet Cupcakes">
+                    <div class="card-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
                     <div class="product-card-content">
                         <h4>Red Velvet Cupcakes</h4>
                         <p>Contact for price</p>
@@ -157,6 +199,9 @@
                 <!-- Product 5 (Extra) -->
                 <div class="product-card carousel-slide">
                     <img src="https://placehold.co/280x220/F8E8E8/5D4037?text=Pita+Pockets" alt="Pita Pockets">
+                    <div class="card-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
                     <div class="product-card-content">
                         <h4>Pita Pockets</h4>
                         <p>₹70</p>
@@ -168,23 +213,52 @@
             <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
+
+    <!-- 5. NEW: About the Baker Section -->
+    <section class="about-section reveal-on-scroll" id="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <!-- Placeholder for your photo -->
+                <img src="https://placehold.co/400x400/F8E8E8/5D4037?text=Your+Photo+Here" alt="The Baker">
+            </div>
+            <div class="about-text">
+                <h2 class="section-title">A Little About Me</h2>
+                <p>Hi! I'm [Your Name], the baker and creator behind Cakes & Moulds. What started as a small passion for baking for family and friends has blossomed into this wonderful journey of creating sweet and savoury treats for all of you.</p>
+                <p>Everything is 100% homemade, crafted with premium ingredients and a whole lot of love. Thank you for being here!</p>
+                <a href="#menu" class="cta-button">Browse the Menu</a>
+            </div>
+        </div>
+    </section>
     
-    <!-- 5. Customer Testimonials -->
-    <section class="testimonials reveal-on-scroll" id="about">
+    <!-- 6. NEW: Auto-Sliding Testimonial Carousel -->
+    <section class="testimonials reveal-on-scroll">
         <h2 class="section-title">What Our Customers Say</h2>
-        <div class="testimonial-quote">
-            <p>"This is where you can put a screenshot or a quote from one of your happy customers on Instagram. It builds a lot of trust!"</p>
-            <p><strong>- Happy Customer</strong></p>
+        <div class="testimonial-wrapper">
+            <!-- Slide 1 -->
+            <div class="testimonial-slide active">
+                <p class="testimonial-quote">"This is where you can put a quote from a happy customer. It builds a lot of trust!"</p>
+                <p class="testimonial-author">- Happy Customer 1</p>
+            </div>
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+                <p class="testimonial-quote">"The mini burgers were the absolute best! A total hit at our party. Thank you!"</p>
+                <p class="testimonial-author">- Happy Customer 2</p>
+            </div>
+            <!-- Slide 3 -->
+            <div class="testimonial-slide">
+                <p class="testimonial-quote">"I'm obsessed with the filled doughnuts. I could eat a dozen by myself. So fresh!"</p>
+                <p class="testimonial-author">- Happy Customer 3</p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 7. Footer -->
     <footer id="contact">
         <p>© 2025 Cakes & Moulds. All Rights Reserved.</p>
         <p>Follow us on Instagram: @cakes_and_moulds</p>
     </footer>
 
-    <!-- ===== NEW: "How to Order" Modal ===== -->
+    <!-- ===== "How to Order" Modal (Existing) ===== -->
     <div id="modal-overlay">
         <div id="modal-content">
             <button id="modal-close-btn"><i class="fas fa-times"></i></button>
@@ -193,7 +267,7 @@
             <ul>
                 <li>✨ All orders are custom. Please order at least <strong>24 hours</strong> in advance.</li>
                 <li>💌 The best way to order is via <strong>Instagram DM</strong>.</li>
-                <li>📍 We are based in [Your City/Area]. Pickup details will be confirmed with your order.</li>
+                <li>📍 We are based in <strong>Mangalore</strong>. Pickup details will be confirmed with your order.</li>
                 <li>💳 Payments can be made via GPay or bank transfer.</li>
             </ul>
             <a href="https://www.instagram.com/cakes_and_moulds" target="_blank" class="cta-button">DM Us to Order!</a>
@@ -201,7 +275,21 @@
     </div>
     <!-- ===== END MODAL ===== -->
 
-    <!-- ===== NEW: Scroll to Top Button ===== -->
+    <!-- ===== NEW: "Quick View" Product Modal ===== -->
+    <div id="quick-view-overlay">
+        <div id="quick-view-content">
+            <button id="quick-view-close-btn"><i class="fas fa-times"></i></button>
+            <img id="quick-view-image" src="" alt="Product Image">
+            <div class="quick-view-details">
+                <h3 id="quick-view-title">Product Title</h3>
+                <p id="quick-view-price">Product Price</p>
+                <a id="quick-view-link" href="https://www.instagram.com/cakes_and_moulds" target="_blank" class="cta-button">View on Instagram</a>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END MODAL ===== -->
+
+    <!-- ===== Scroll to Top Button (Existing) ===== -->
     <button id="scroll-to-top-btn">
         <i class="fas fa-arrow-up"></i>
     </button>
@@ -210,4 +298,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
