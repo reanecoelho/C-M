@@ -1,7 +1,3 @@
-/* * JavaScript for Cakes & Moulds
- * This file adds interactivity to the website.
- */
-
 // This waits for the HTML document to be ready, which is fast!
 document.addEventListener('DOMContentLoaded', () => {
 
