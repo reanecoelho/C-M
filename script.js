@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. OLD REDIRECT LOGIC IS REPLACED BY "QUICK VIEW" MODAL LOGIC (Feature 1) ---
+    // --- 3. "Quick View" Product Modal Logic (Feature 1) ---
     const productCards = document.querySelectorAll('.product-card, .masonry-card');
     const quickViewOverlay = document.getElementById('quick-view-overlay');
     const quickViewCloseBtn = document.getElementById('quick-view-close-btn');
@@ -69,9 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Close modal with button
-        quickViewCloseBtn.addEventListener('click', () => {
-            quickViewOverlay.classList.remove('modal-visible');
-        });
+        if(quickViewCloseBtn) {
+            quickViewCloseBtn.addEventListener('click', () => {
+                quickViewOverlay.classList.remove('modal-visible');
+            });
+        }
 
         // Close modal by clicking outside
         quickViewOverlay.addEventListener('click', (e) => {
@@ -137,24 +139,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 7. "How to Order" Modal Logic ---
     const modalOverlay = document.getElementById('modal-overlay');
     const orderLink = document.getElementById('how-to-order-link');
+    const orderLinkFooter = document.getElementById('how-to-order-link-footer');
     const modalCloseBtn = document.getElementById('modal-close-btn');
 
-    if (modalOverlay && orderLink && modalCloseBtn) {
-        // Open modal
-        orderLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            modalOverlay.classList.add('modal-visible');
-        });
+    const openOrderModal = (e) => {
+        e.preventDefault();
+        modalOverlay.classList.add('modal-visible');
+        if (mobileMenu.classList.contains('menu-open')) {
+            mobileMenu.classList.remove('menu-open');
+        }
+    };
+    
+    const closeOrderModal = () => {
+        modalOverlay.classList.remove('modal-visible');
+    };
+
+    if (modalOverlay && modalCloseBtn) {
+        if(orderLink) orderLink.addEventListener('click', openOrderModal);
+        if(orderLinkFooter) orderLinkFooter.addEventListener('click', openOrderModal);
         
         // Close modal with button
-        modalCloseBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('modal-visible');
-        });
+        modalCloseBtn.addEventListener('click', closeOrderModal);
 
         // Close modal by clicking outside
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('modal-visible');
+                closeOrderModal();
             }
         });
     }
@@ -204,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(section);
     });
 
-    // --- 10. NEW: Testimonial Auto-Slide Logic (Feature 3) ---
+    // --- 10. Testimonial Auto-Slide Logic (Feature 3) ---
     const slides = document.querySelectorAll('.testimonial-slide');
     let currentSlide = 0;
 
@@ -229,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(nextSlide, 5000);
     }
 
-    // --- 11. NEW: Live Category Filter Logic (Feature 2) ---
+    // --- 11. Live Category Filter Logic (Feature 2) ---
     const filterButtons = document.querySelectorAll('.filter-btn');
     const masonryCards = document.querySelectorAll('.masonry-card');
 
@@ -255,5 +265,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 12. NEW: Contact Form Modal Logic ---
+    const contactModalOverlay = document.getElementById('contact-modal-overlay');
+    const contactLink = document.getElementById('contact-form-link');
+    const contactLinkFooter = document.getElementById('contact-form-link-footer');
+    const contactModalCloseBtn = document.getElementById('contact-modal-close-btn');
+
+    const openContactModal = (e) => {
+        e.preventDefault();
+        contactModalOverlay.classList.add('modal-visible');
+        if (mobileMenu.classList.contains('menu-open')) {
+            mobileMenu.classList.remove('menu-open');
+        }
+    };
+    
+    const closeContactModal = () => {
+        contactModalOverlay.classList.remove('modal-visible');
+    };
+
+    if (contactModalOverlay && contactModalCloseBtn) {
+        if(contactLink) contactLink.addEventListener('click', openContactModal);
+        if(contactLinkFooter) contactLinkFooter.addEventListener('click', openContactModal);
+        
+        // Close modal with button
+        contactModalCloseBtn.addEventListener('click', closeContactModal);
+
+        // Close modal by clicking outside
+        contactModalOverlay.addEventListener('click', (e) => {
+            if (e.target === contactModalOverlay) {
+                closeContactModal();
+            }
+        });
+    }
 
 }); // <-- End of the DOMContentLoaded listener
