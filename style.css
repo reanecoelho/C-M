@@ -117,7 +117,7 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 40px 0; /* Added more padding */
 }
 
 /* --- 4. Header & Navigation --- */
@@ -194,6 +194,7 @@ nav a:hover {
     border-radius: 5px;
     transition: background-color 0.3s;
     font-size: 1em;
+    border: none;
 }
 
 .cta-button:hover {
@@ -211,7 +212,35 @@ nav a:hover {
 
 
 /* --- 6. "PINTEREST-Y" Masonry Grid Section --- */
-/* This replaces the old .category-grid */
+
+/* NEW: Filter Button Styling */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.filter-btn {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    background: none;
+    border: 2px solid #F8E8E8;
+    color: #D46A6A;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.filter-btn:hover {
+    background: #F8E8E8;
+}
+.filter-btn.active {
+    background: #D46A6A;
+    color: white;
+    border-color: #D46A6A;
+}
+
 .masonry-grid {
     /* This creates the Pinterest-like columns */
     column-count: 3;
@@ -228,14 +257,51 @@ nav a:hover {
     overflow: hidden;
     /* This is the magic: prevents cards from breaking across columns */
     break-inside: avoid;
-    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
+    position: relative; /* For the overlay */
+    transition: all 0.4s ease; /* For filtering */
 }
 
-.masonry-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.07);
+/* NEW: Class for filtering */
+.masonry-card.hidden {
+    transform: scale(0.8);
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
 }
+
+/* NEW: Card Hover Overlay */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(93, 64, 55, 0.5); /* Dark chocolate overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+}
+.masonry-card:hover .card-overlay,
+.product-card:hover .card-overlay {
+    opacity: 1;
+}
+/* Image zoom on hover */
+.masonry-card img,
+.product-card img {
+    transition: transform 0.3s ease;
+}
+.masonry-card:hover img,
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
 
 .masonry-card img {
     width: 100%;
@@ -332,16 +398,14 @@ nav a:hover {
     text-align: left;
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
+    position: relative; /* For the overlay */
 }
 /* The last slide shouldn't have margin */
 .product-card.carousel-slide:last-child {
     margin-right: 0;
 }
 
-.product-card.carousel-slide:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.07);
-}
+/* Product card no longer needs :hover, handled by overlay */
 
 .product-card img {
     width: 100%;
@@ -392,33 +456,82 @@ nav a:hover {
 .next-btn { right: -15px; }
 
 
-/* --- 9. Customer Testimonials --- */
+/* --- 9. NEW: About the Baker Section --- */
+.about-section {
+    background: #FFFFFF;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 60px 0;
+}
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.about-image {
+    flex: 1;
+}
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+.about-text {
+    flex: 1.5; /* Give text more space */
+}
+.about-text .section-title {
+    text-align: left; /* Override center align */
+    margin-bottom: 20px;
+}
+.about-text p {
+    line-height: 1.7;
+    font-size: 1.1em;
+    opacity: 0.8;
+}
+
+/* --- 10. NEW: Auto-Sliding Testimonial Carousel --- */
 .testimonials {
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: #FDFDFD; /* Slightly different bg */
     padding: 60px 20px;
     margin-top: 40px;
 }
 
-/* .testimonials h2 is covered by .section-title */
+.testimonial-wrapper {
+    max-width: 700px;
+    margin: 20px auto;
+    position: relative;
+    min-height: 150px; /* Set height to prevent layout jump */
+    overflow: hidden;
+}
+
+.testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 1s ease-in-out;
+}
+.testimonial-slide.active {
+    opacity: 1; /* Visible */
+}
 
 .testimonial-quote {
-    max-width: 600px;
-    margin: 20px auto;
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-style: italic;
     color: #5D4037;
     opacity: 0.8;
 }
 
-.testimonial-quote p:last-child {
+.testimonial-author {
     font-style: normal;
     font-weight: bold;
     opacity: 1;
     margin-top: 15px;
+    font-size: 1.1em;
 }
 
-/* --- 10. Footer --- */
+/* --- 11. Footer --- */
 footer {
     text-align: center;
     padding: 40px 20px;
@@ -432,7 +545,7 @@ footer p {
     opacity: 0.8;
 }
 
-/* --- 11. NEW: "How to Order" Modal Styling --- */
+/* --- 12. "How to Order" Modal Styling --- */
 #modal-overlay {
     position: fixed;
     top: 0;
@@ -497,7 +610,86 @@ footer p {
     color: #5D4037;
 }
 
-/* --- 12. NEW: Scroll to Top Button Styling --- */
+/* --- 13. NEW: "Quick View" Product Modal Styling --- */
+#quick-view-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(93, 64, 55, 0.7); /* Dark chocolate transparent bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    /* Hide by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#quick-view-overlay.modal-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#quick-view-content {
+    background: #fff;
+    border-radius: 8px;
+    max-width: 800px; /* Wider for product */
+    width: 90%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    /* Pop-in animation */
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+#quick-view-overlay.modal-visible #quick-view-content {
+    transform: scale(1);
+}
+
+#quick-view-image {
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+.quick-view-details {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.quick-view-details h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-top: 0;
+    color: #5D4037;
+}
+.quick-view-details p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #E69597; /* Pink price */
+    margin: 10px 0 20px;
+}
+#quick-view-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 10; /* Above details */
+}
+#quick-view-close-btn:hover {
+    color: #5D4037;
+}
+
+/* --- 14. Scroll to Top Button Styling --- */
 #scroll-to-top-btn {
     position: fixed;
     bottom: 20px;
@@ -527,7 +719,7 @@ footer p {
     background-color: #D46A6A; /* Darker pink */
 }
 
-/* --- 13. NEW: Dynamic Scroll Reveal Animation --- */
+/* --- 15. Dynamic Scroll Reveal Animation --- */
 .reveal-on-scroll {
     /* Hide by default */
     opacity: 0;
@@ -540,7 +732,7 @@ footer p {
     transform: translateY(0);
 }
 
-/* --- 14. Mobile Responsive --- */
+/* --- 16. Mobile Responsive --- */
 @media (max-width: 1024px) {
     /* Show 2 columns in masonry on tablets */
     .masonry-grid {
@@ -550,6 +742,12 @@ footer p {
     .product-card.carousel-slide {
         flex: 0 0 48%;
         max-width: 48%;
+    }
+    .about-container {
+        flex-direction: column;
+    }
+    .about-text .section-title {
+        text-align: center;
     }
 }
 
@@ -604,12 +802,4 @@ footer p {
 
     /* Show 1 item in carousel on mobile */
     .product-card.carousel-slide {
-        flex: 0 0 90%; /* Show 90% to hint there's more */
-        max-width: 90%;
-    }
-
-    .carousel-btn {
-        display: none; /* Hide buttons on mobile, user will swipe */
-    }
-}
-
+        flex: 0 0 90%; /* Show 90% to hint there
