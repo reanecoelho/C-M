@@ -138,6 +138,7 @@ header {
     font-size: 1.7em;
     font-weight: 700;
     color: #D46A6A; /* Darker, dusty rose pink */
+    text-decoration: none; /* In case it's a link */
 }
 
 /* Default desktop nav */
@@ -147,6 +148,7 @@ nav a {
     color: #5D4037; /* Dark chocolate text */
     font-weight: 700; /* Bolder nav links */
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 nav a:hover {
@@ -195,13 +197,14 @@ nav a:hover {
     transition: background-color 0.3s;
     font-size: 1em;
     border: none;
+    cursor: pointer; /* Ensure it's a pointer */
 }
 
 .cta-button:hover {
     background-color: #D46A6A; /* Darker, dusty rose pink */
 }
 
-/* --- NEW: Universal Section Title --- */
+/* --- Universal Section Title --- */
 .section-title {
     font-family: 'Playfair Display', serif; /* Heading Font */
     font-size: 2.5em;
@@ -456,7 +459,7 @@ nav a:hover {
 .next-btn { right: -15px; }
 
 
-/* --- 9. NEW: About the Baker Section --- */
+/* --- 9. "About the Baker" Section --- */
 .about-section {
     background: #FFFFFF;
     border-top: 1px solid #eee;
@@ -488,7 +491,7 @@ nav a:hover {
     opacity: 0.8;
 }
 
-/* --- 10. NEW: Auto-Sliding Testimonial Carousel --- */
+/* --- 10. "Auto-Sliding Testimonial" Carousel --- */
 .testimonials {
     text-align: center;
     background-color: #FDFDFD; /* Slightly different bg */
@@ -531,21 +534,111 @@ nav a:hover {
     font-size: 1.1em;
 }
 
-/* --- 11. Footer --- */
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #5D4037; /* Dark chocolate background */
-    color: #FFFBF7; /* Creamy text */
-    margin-top: 40px;
+/* --- 11. NEW: "Live" Instagram Gallery --- */
+#instagram-gallery-section {
+    padding-top: 40px;
 }
 
-footer p {
-    margin: 5px 0;
+.widget-placeholder {
+    background: #F8E8E8;
+    border-radius: 8px;
+    text-align: center;
+    padding: 60px 40px;
+    line-height: 1.6;
+}
+.widget-placeholder p {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+/* --- 12. NEW: "Fat Footer" --- */
+footer {
+    padding: 60px 0 0; /* More padding, no top margin */
+    background-color: #5D4037; /* Dark chocolate background */
+    color: #FFFBF7; /* Creamy text */
+    margin-top: 40px; /* Keep margin */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 5% 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px; /* Prevents squishing */
+}
+
+.footer-column .logo {
+    color: #E69597; /* Pink logo */
+    margin-bottom: 15px;
+    display: block;
+}
+
+.footer-column h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4em;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.footer-column p {
+    line-height: 1.6;
     opacity: 0.8;
 }
 
-/* --- 12. "How to Order" Modal Styling --- */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul a {
+    text-decoration: none;
+    color: #FFFBF7;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-column ul a:hover {
+    opacity: 1;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    background: #E69597;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.social-link:hover {
+    background-color: #D46A6A;
+}
+.social-link i {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.7;
+}
+
+/* --- 13. "How to Order" Modal Styling --- */
 #modal-overlay {
     position: fixed;
     top: 0;
@@ -610,7 +703,7 @@ footer p {
     color: #5D4037;
 }
 
-/* --- 13. NEW: "Quick View" Product Modal Styling --- */
+/* --- 14. "Quick View" Product Modal Styling --- */
 #quick-view-overlay {
     position: fixed;
     top: 0;
@@ -689,7 +782,89 @@ footer p {
     color: #5D4037;
 }
 
-/* --- 14. Scroll to Top Button Styling --- */
+/* --- 15. NEW: Contact Form Modal Styling --- */
+#contact-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(93, 64, 55, 0.7); /* Dark chocolate transparent bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    /* Hide by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#contact-modal-overlay.modal-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#contact-modal-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px; /* Standard form width */
+    width: 90%;
+    position: relative;
+    /* Pop-in animation */
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+#contact-modal-overlay.modal-visible #contact-modal-content {
+    transform: scale(1);
+}
+#contact-modal-content h2 {
+    margin-top: 0;
+}
+#contact-modal-content p {
+    font-size: 1.1em;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+#contact-modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+#contact-modal-close-btn:hover {
+    color: #5D4037;
+}
+
+/* Form Styles */
+#contact-form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Important */
+    margin-bottom: 15px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+}
+#contact-form button {
+    width: 100%; /* Full width button */
+}
+
+
+/* --- 16. Scroll to Top Button Styling --- */
 #scroll-to-top-btn {
     position: fixed;
     bottom: 20px;
@@ -719,7 +894,7 @@ footer p {
     background-color: #D46A6A; /* Darker pink */
 }
 
-/* --- 15. Dynamic Scroll Reveal Animation --- */
+/* --- 17. Dynamic Scroll Reveal Animation --- */
 .reveal-on-scroll {
     /* Hide by default */
     opacity: 0;
@@ -732,7 +907,7 @@ footer p {
     transform: translateY(0);
 }
 
-/* --- 16. Mobile Responsive --- */
+/* --- 18. Mobile Responsive --- */
 @media (max-width: 1024px) {
     /* Show 2 columns in masonry on tablets */
     .masonry-grid {
@@ -748,6 +923,13 @@ footer p {
     }
     .about-text .section-title {
         text-align: center;
+    }
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-column .logo {
+        margin: 0 auto 15px;
     }
 }
 
@@ -802,4 +984,27 @@ footer p {
 
     /* Show 1 item in carousel on mobile */
     .product-card.carousel-slide {
-        flex: 0 0 90%; /* Show 90% to hint there
+        flex: 0 0 90%; /* Show 90% to hint there's more */
+        max-width: 90%;
+    }
+
+    .carousel-btn {
+        display: none; /* Hide buttons on mobile, user will swipe */
+    }
+
+    /* Quick View Modal on Mobile */
+    #quick-view-content {
+        flex-direction: column;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    #quick-view-image {
+        max-width: 100%;
+    }
+    .quick-view-details {
+        padding: 20px;
+    }
+    .quick-view-details h3 {
+        font-size: 1.5em;
+    }
+}
