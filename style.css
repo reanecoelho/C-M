@@ -1,110 +1,11 @@
-/* --- 1. Loader Screen --- */
-#loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /* Use the light pink from our hero section */
-    background-color: #F8E8E8; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Make sure it's on top of everything */
-    z-index: 9999;
-    /* This is for the fade-out */
-    transition: opacity 0.75s ease, visibility 0.75s ease;
-}
-
-/* This class will be added by JavaScript to hide the loader */
-#loader-wrapper.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* The "cutesy" pulsing animation */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.07); }
-    100% { transform: scale(1); }
-}
-
-/* --- CSS Cake Logo (Identical to yours) --- */
-.loader-cake {
-    /* This is the white circle background */
-    width: 150px;
-    height: 150px;
-    background: #fff;
-    border-radius: 50%;
-    /* Chocolate brown border from our theme */
-    border: 8px solid #5D4037; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 10px; 
-    box-sizing: border-box;
-    /* Apply the animation! */
-    animation: pulse 1.5s infinite ease-in-out;
-}
-
-.cake-hearts {
-    display: flex;
-}
-
-.heart {
-    width: 15px;
-    height: 15px;
-    background: #5D4037; /* Brown heart */
-    margin: 0 3px;
-    transform: rotate(-45deg);
-    position: relative;
-}
-.heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: #5D4037;
-    border-radius: 50%;
-}
-.heart::before { top: -8px; left: 0; }
-.heart::after { top: 0; left: 8px; }
-
-.cake-frosting-top {
-    width: 80px;
-    height: 15px;
-    background: #E69597; /* Raspberry pink */
-    border-radius: 5px;
-    margin-top: 8px;
-}
-.cake-layer-top {
-    width: 80px;
-    height: 20px;
-    background: #5D4037; /* Brown */
-}
-.cake-frosting-mid {
-    width: 80px;
-    height: 10px;
-    background: #E69597; /* Pink */
-}
-.cake-layer-bottom {
-    width: 80px;
-    height: 20px;
-    background: #5D4037; /* Brown */
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-
-/* --- 2. Google Fonts Import (The "Vibe") --- */
+/* --- 1. Google Fonts Import (The "Vibe") --- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
 
 /* Playfair Display: Our new elegant, "crafty" serif font for headings.
    Lato: Our new clean, readable sans-serif font for all body text.
 */
 
-/* --- 3. Basic Setup (Our "Twist") --- */
+/* --- 2. Basic Setup (Our "Twist") --- */
 body {
     font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
@@ -120,7 +21,7 @@ body {
     padding: 40px 0; /* Added more padding */
 }
 
-/* --- 4. Header & Navigation --- */
+/* --- 3. Header & Navigation --- */
 header {
     display: flex;
     justify-content: space-between;
@@ -166,7 +67,7 @@ nav a:hover {
     z-index: 1002; /* Above nav */
 }
 
-/* --- 5. Hero Section --- */
+/* --- 4. Hero Section --- */
 .hero {
     /* Switched to a light background with dark text for the "crafty" vibe */
     background-color: #F8E8E8; /* Very light, soft pink */
@@ -214,7 +115,7 @@ nav a:hover {
 }
 
 
-/* --- 6. "PINTEREST-Y" Masonry Grid Section --- */
+/* --- 5. "PINTEREST-Y" Masonry Grid Section --- */
 
 /* NEW: Filter Button Styling */
 .filter-buttons {
@@ -322,7 +223,7 @@ nav a:hover {
 }
 
 
-/* --- 7. Trust Signals Section --- */
+/* --- 6. Trust Signals Section --- */
 .trust-signals {
     display: flex;
     justify-content: space-around;
@@ -359,7 +260,7 @@ nav a:hover {
     margin: 0;
 }
 
-/* --- 8. "CAROUSEL" Best-Sellers Section --- */
+/* --- 7. "CAROUSEL" Best-Sellers Section --- */
 .bestsellers {
     padding-top: 40px;
 }
@@ -459,7 +360,7 @@ nav a:hover {
 .next-btn { right: -15px; }
 
 
-/* --- 9. "About the Baker" Section --- */
+/* --- 8. "About the Baker" Section --- */
 .about-section {
     background: #FFFFFF;
     border-top: 1px solid #eee;
@@ -491,7 +392,7 @@ nav a:hover {
     opacity: 0.8;
 }
 
-/* --- 10. "Auto-Sliding Testimonial" Carousel --- */
+/* --- 9. "Auto-Sliding Testimonial" Carousel --- */
 .testimonials {
     text-align: center;
     background-color: #FDFDFD; /* Slightly different bg */
@@ -534,7 +435,7 @@ nav a:hover {
     font-size: 1.1em;
 }
 
-/* --- 11. NEW: "Live" Instagram Gallery --- */
+/* --- 10. NEW: "Live" Instagram Gallery --- */
 #instagram-gallery-section {
     padding-top: 40px;
 }
@@ -551,7 +452,7 @@ nav a:hover {
     margin: 0;
 }
 
-/* --- 12. NEW: "Fat Footer" --- */
+/* --- 11. NEW: "Fat Footer" --- */
 footer {
     padding: 60px 0 0; /* More padding, no top margin */
     background-color: #5D4037; /* Dark chocolate background */
@@ -638,7 +539,7 @@ footer {
     opacity: 0.7;
 }
 
-/* --- 13. "How to Order" Modal Styling --- */
+/* --- 12. "How to Order" Modal Styling --- */
 #modal-overlay {
     position: fixed;
     top: 0;
@@ -703,7 +604,7 @@ footer {
     color: #5D4037;
 }
 
-/* --- 14. "Quick View" Product Modal Styling --- */
+/* --- 13. "Quick View" Product Modal Styling --- */
 #quick-view-overlay {
     position: fixed;
     top: 0;
@@ -782,7 +683,7 @@ footer {
     color: #5D4037;
 }
 
-/* --- 15. NEW: Contact Form Modal Styling --- */
+/* --- 14. NEW: Contact Form Modal Styling --- */
 #contact-modal-overlay {
     position: fixed;
     top: 0;
@@ -864,7 +765,7 @@ footer {
 }
 
 
-/* --- 16. Scroll to Top Button Styling --- */
+/* --- 15. Scroll to Top Button Styling --- */
 #scroll-to-top-btn {
     position: fixed;
     bottom: 20px;
@@ -894,7 +795,7 @@ footer {
     background-color: #D46A6A; /* Darker pink */
 }
 
-/* --- 17. Dynamic Scroll Reveal Animation --- */
+/* --- 16. Dynamic Scroll Reveal Animation --- */
 .reveal-on-scroll {
     /* Hide by default */
     opacity: 0;
@@ -907,7 +808,7 @@ footer {
     transform: translateY(0);
 }
 
-/* --- 18. Mobile Responsive --- */
+/* --- 17. Mobile Responsive --- */
 @media (max-width: 1024px) {
     /* Show 2 columns in masonry on tablets */
     .masonry-grid {
